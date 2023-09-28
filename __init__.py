@@ -50,6 +50,8 @@ class Anki_PrioriTag:
         if args:
             raise Exception(f"Unexpected args: '{args}'")
         if kwargs:
+            if "help" in kwargs:
+                return help(self)
             raise Exception(f"Unexpected kwargs: '{kwargs}'")
         self.profile_name = profile_name
         if "//" in topdecks:
