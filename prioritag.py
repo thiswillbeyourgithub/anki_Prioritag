@@ -399,7 +399,7 @@ class Anki_PrioriTag:
         most_urgent_rows = tag_summary["sum_sorted_index"].nsmallest(int(threshold))
         most_urgent_tags = most_urgent_rows.index.tolist()
 
-        whi("The most urgent tags are:" + "\n    * ".join([t for t in most_urgent_tags]))
+        whi("The most urgent tags are:\n* " + "\n    * ".join([t for t in most_urgent_tags]))
 
         return most_urgent_tags
 
