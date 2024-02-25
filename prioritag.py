@@ -427,9 +427,13 @@ class Anki_PrioriTag:
                         tag = tag[1:]
                     break
             tag = tag.replace("::", ":")
+            if len(tag) > 50:
+                str_tag = tag[:50] + "..."
+            else:
+                str_tag = tag
             self._call_anki(
                     action="createFilteredDeck",
-                    newDeckName=f"AnnA PrioTag - " + tag,
+                newDeckName=f"AnnA PrioTag - " + str_tag,
                     searchQuery=query,
                     gatherCount=1000,
                     reschedule=True,
