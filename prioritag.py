@@ -428,7 +428,7 @@ class Anki_PrioriTag:
                     break
             tag = tag.replace("::", ":")
             if len(tag) > 50:
-                str_tag = tag[:50] + "..."
+                str_tag = tag[:25] + "..." + tag[-25:]
             else:
                 str_tag = tag
             self._call_anki(
