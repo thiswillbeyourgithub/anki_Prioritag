@@ -431,6 +431,8 @@ class Anki_PrioriTag:
                 str_tag = tag[:25] + "..." + tag[-25:]
             else:
                 str_tag = tag
+            if "is:due" not in query:
+                query = "is:due " + query
             self._call_anki(
                     action="createFilteredDeck",
                 newDeckName=f"AnnA PrioTag - " + str_tag,
