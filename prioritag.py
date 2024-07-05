@@ -10,10 +10,13 @@ import urllib.request
 import ankipandas as akp
 import numpy as np
 import pandas as pd
+from py_ankiconnect import PyAnkiconnect
 
 from utils.logger import red, whi, yel
 
 class Anki_PrioriTag:
+    _call_anki = PyAnkiconnect()
+
     def __init__(
             self,
             profile_name="Default",
@@ -444,40 +447,6 @@ class Anki_PrioriTag:
                     )
             whi(f"Created filtered deck for tag '{tag}'")
         return
-
-    def _call_anki(self, action, **params):
-        """ bridge between local python libraries and AnnA Companion addon
-        (a fork from anki-connect) """
-        def request_wrapper(action, **params):
-            return {'action': action, 'params': params, 'version': 6}
-
-        requestJson = json.dumps(request_wrapper(action, **params)
-                                 ).encode('utf-8')
-
-        try:
-            response = json.load(urllib.request.urlopen(
-                urllib.request.Request(
-                    'http://localhost:8775',
-                    requestJson)))
-        except (ConnectionRefusedError, urllib.error.URLError) as e:
-            red(f"{str(e)}: is Anki open and 'AnnA Companion addon' "
-                 "enabled? Firewall issue?")
-            raise Exception(f"{str(e)}: is Anki open and 'AnnA Companion "
-                            "addon' enabled? Firewall issue?")
-
-        if len(response) != 2:
-            red('response has an unexpected number of fields')
-            raise Exception('response has an unexpected number of fields')
-        if 'error' not in response:
-            red('response is missing required error field')
-            raise Exception('response is missing required error field')
-        if 'result' not in response:
-            red('response is missing required result field')
-            raise Exception('response is missing required result field')
-        if response['error'] is not None:
-            red(response['error'])
-            raise Exception(response['error'])
-        return response['result']
 
 
 
