@@ -5,3 +5,5 @@ This is a quick script I made for myself, if you need help or have any question 
 
 
 You might be interested in my other anki project: [AnnA_Anki_neuronal_Appendix](https://github.com/thiswillbeyourgithub/AnnA_Anki_neuronal_Appendix/)
+
+**Check out my other Anki and AI related projects on my [GitHub profile](https://github.com/thiswillbeyourgithub)!**
